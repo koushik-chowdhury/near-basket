@@ -1,34 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NearBasket | Coming Soon</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-</head>
-<body>
-  <div class="container">
-    <img src="logo.png" alt="NearBasket Logo" class="logo" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Near Basket</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="manifest.json" />
 
-    <h1>We're Coming Soon!</h1>
-    <p class="tagline">
-      Fresh groceries delivered right to your doorstep 
-    </p>
-
-    <div class="contact-box">
-      <h2>Need something before we launch?</h2>
-      <p>Contact us anytime:</p>
-
-      <div class="buttons">
-        <a href="tel:9242979349" class="call-btn">📞 Call Now</a>
-        <a href="https://wa.me/919242979349" class="whatsapp-btn" target="_blank">💬 WhatsApp</a>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <ul>
+          <li>
+            <a href=""><i class="ri-home-4-line"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="ri-apps-line"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="ri-shopping-cart-2-line"></i></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="container">
+        <img src="logo/logo.png" class="logo" height="80px" />
+        <header class="nb-header">
+          <h1>Near Basket</h1>
+          <p>Smart Grocery Price List</p>
+          <div class="search">
+            <i class="ri-search-line search-icon"></i>
+            <input
+              type="text"
+              name=""
+              id="searchBox"
+              placeholder="Search Product"
+            />
+          </div>
+        </header>
+        <div class="price-list">
+          <!-- <div class="product-card">
+            <img
+              src="https://rukminim2.flixcart.com/image/280/280/xif0q/washing-powder/d/k/f/-original-imah9tuga2rmac7p.jpeg?q=70"
+              alt="Surfexcel Easy Wash"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h2>Surfexcel Easy Wash</h2>
+              <p class="brand">by Surfexcel</p>
+              <div class="price">
+                <span class="sale">₹125</span>
+                <span class="mrp">₹130</span>
+                <span class="discount">5% OFF</span>
+              </div>
+              <p class="variant">1 Kg Pack</p>
+            </div>
+            <button class="add-btn">Add to Cart</button>
+          </div> -->
+        </div>
       </div>
-    </div>
+    </main>
+    <script type="module" src="script.js"></script>
+    <script>
+      // Register Service Worker
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("service-worker.js")
+            .then(() => console.log("✅ Service Worker Registered"))
+            .catch((err) => console.log("SW fail:", err));
+        });
+      }
 
-    <footer>© 2025 NearBasket — Delivering Grocery with Care</footer>
-  </div>
+      // Install popup prompt
+      let deferredPrompt;
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
 
-  <script src="script.js"></script>
-</body>
+        // create custom popup
+        const installDiv = document.createElement("div");
+        installDiv.innerHTML = `
+      <div id="installPopup" style="
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #27ae60;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        font-family: Poppins, sans-serif;
+        cursor: pointer;
+        z-index: 9999;">
+        📱 Install Near Basket
+      </div>`;
+        document.body.appendChild(installDiv);
+
+        installDiv.addEventListener("click", async () => {
+          installDiv.remove();
+          deferredPrompt.prompt();
+          const choice = await deferredPrompt.userChoice;
+          if (choice.outcome === "accepted") {
+            console.log("App installed");
+          }
+          deferredPrompt = null;
+        });
+      });
+    </script>
+  </body>
 </html>
