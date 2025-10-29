@@ -1,4 +1,4 @@
-const CACHE_NAME = `nearbasket-V`
+const CACHE_NAME = `nearbasket-V4`
 console.log(CACHE_NAME)
 const urlsToCache = ["/", "/index.html", "/style.css", "/script.js", "/manifest.json", "/logo/logo-192.png", "/logo/logo-512.png"];
 
