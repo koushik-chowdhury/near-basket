@@ -1,33 +1,16 @@
-const CACHE_NAME = "nearbasket-v2";
-const urlsToCache = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/script.js",
-  "/manifest.json",
-  "/logo/logo-192.png",
-  "/logo/logo-512.png",
-];
+const CACHE_NAME = `nearbasket-V`
+console.log(CACHE_NAME)
+const urlsToCache = ["/", "/index.html", "/style.css", "/script.js", "/manifest.json", "/logo/logo-192.png", "/logo/logo-512.png"];
 
 // Install
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache)));
   self.skipWaiting();
 });
 
 // Activate
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches
-      .keys()
-      .then((keys) =>
-        Promise.all(
-          keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))
-        )
-      )
-  );
+  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))));
   self.clients.claim();
 });
 
@@ -53,9 +36,5 @@ self.addEventListener("fetch", (event) => {
   }
 
   // Normal static assets
-  event.respondWith(
-    caches
-      .match(event.request)
-      .then((response) => response || fetch(event.request))
-  );
+  event.respondWith(caches.match(event.request).then((response) => response || fetch(event.request)));
 });

@@ -66,6 +66,14 @@
           <!-- PRODUCT WILL ADD HERE DYNAMICALLY -->
         </div>
       </div>
+      <div class="order-wp">
+        <a href="https://wa.me/919242979349?text=Hello%20Near%20Basket%2C%20I%20want%20to%20place%20an%20order." target="_blank">
+          <button class="whatsapp-btn">
+            <i class="ri-whatsapp-line"></i>
+            <p>Place Order</p>
+          </button>
+        </a>
+      </div>
     </main>
 
     <script type="module" src="script.js"></script>
@@ -83,28 +91,32 @@
 
       // Install popup prompt
       let deferredPrompt;
+
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
         deferredPrompt = e;
 
-        // create custom popup
+        if (document.getElementById("installPopup")) return;
+
         const installDiv = document.createElement("div");
+        installDiv.id = "installPopup";
         installDiv.innerHTML = `
-      <div id="installPopup" style="
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #27ae60;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        font-family: Poppins, sans-serif;
-        cursor: pointer;
-        z-index: 9999;">
-        📱 Install Near Basket
-      </div>`;
+    <div style="
+      position: absolute;
+      top: 12px;
+      right:8px;
+      background: #333;
+      font-weight:bold;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 4px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      font-family: Poppins, sans-serif;
+      cursor: pointer;
+      z-index: 9999;
+      font-size: 12px;">
+      <i class="ri-arrow-down-circle-line"></i> Install
+    </div>`;
         document.body.appendChild(installDiv);
 
         installDiv.addEventListener("click", async () => {
@@ -112,10 +124,19 @@
           deferredPrompt.prompt();
           const choice = await deferredPrompt.userChoice;
           if (choice.outcome === "accepted") {
-            console.log("App installed");
+            console.log("✅ User accepted the install prompt");
+          } else {
+            console.log("❌ User dismissed the install prompt");
           }
           deferredPrompt = null;
         });
+      });
+
+      // Remove popup after installation
+      window.addEventListener("appinstalled", () => {
+        console.log("✅ App installed successfully");
+        const popup = document.getElementById("installPopup");
+        if (popup) popup.remove();
       });
     </script>
   </body>
