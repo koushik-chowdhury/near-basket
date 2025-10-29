@@ -1,4 +1,4 @@
-const CACHE_NAME = "nearbasket-v1";
+const CACHE_NAME = "nearbasket-v2";
 const urlsToCache = [
   "/",
   "/index.html",
