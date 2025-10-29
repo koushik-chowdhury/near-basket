@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--  Basic Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Near Basket</title>
+    <title>Near Basket | Smart Grocery Price List & Online Ordering</title>
+
+    <!--  Primary SEO Meta -->
+    <meta name="description" content="Compare grocery prices, view discounts, and order directly via WhatsApp — all from Near Basket, your smart neighborhood grocery app." />
+    <meta name="keywords" content="grocery, near basket, grocery price list, detergent, supermarket app, online grocery, nearbasket.store, kirana app" />
+    <meta name="author" content="Near Basket Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#27ae60" />
+
+    <!--  Google Analytics (GA4) -->
+    <!-- Tracks user visits and interactions -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHFN4Y7HYB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-NHFN4Y7HYB");
+    </script>
+
+    <!--  Styles -->
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+
+    <!-- Icons (Remix Icon CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!--  PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
 
+    <!--  Favicon -->
+    <link rel="icon" href="./logo/logo-192.png" type="image/png" />
   </head>
   <body>
     <main>
-      <nav>
+      <!-- <nav>
         <ul>
           <li>
             <a href=""><i class="ri-home-4-line"></i></a>
@@ -26,7 +51,7 @@
             <a href=""><i class="ri-shopping-cart-2-line"></i></a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
       <div class="container">
         <img src="logo/logo.png" class="logo" height="80px" />
         <header class="nb-header">
@@ -34,39 +59,19 @@
           <p>Smart Grocery Price List</p>
           <div class="search">
             <i class="ri-search-line search-icon"></i>
-            <input
-              type="text"
-              name=""
-              id="searchBox"
-              placeholder="Search Product"
-            />
+            <input type="text" name="" id="searchBox" placeholder="Search Product" />
           </div>
         </header>
         <div class="price-list">
-          <!-- <div class="product-card">
-            <img
-              src="https://rukminim2.flixcart.com/image/280/280/xif0q/washing-powder/d/k/f/-original-imah9tuga2rmac7p.jpeg?q=70"
-              alt="Surfexcel Easy Wash"
-              class="product-img"
-            />
-            <div class="product-info">
-              <h2>Surfexcel Easy Wash</h2>
-              <p class="brand">by Surfexcel</p>
-              <div class="price">
-                <span class="sale">₹125</span>
-                <span class="mrp">₹130</span>
-                <span class="discount">5% OFF</span>
-              </div>
-              <p class="variant">1 Kg Pack</p>
-            </div>
-            <button class="add-btn">Add to Cart</button>
-          </div> -->
+          <!-- PRODUCT WILL ADD HERE DYNAMICALLY -->
         </div>
       </div>
     </main>
+
     <script type="module" src="script.js"></script>
+
+    <!-- Register Service Worker -->
     <script>
-      // Register Service Worker
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
